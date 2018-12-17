@@ -10,10 +10,25 @@ class TodoItem extends Component {
     }
   }
 
-  handleEditing = () => {
+  handleEditingStart = (e) => {
     this.setState({
       editing: true,
     });
+  }
+
+  handleEditingComplete = (e) => {
+    if (e.key === 'Enter') {
+      this.setState({
+        editing: false,
+      });
+    }
+  }
+
+  handleEditing = (e) => {
+    this.setState({
+      todoText: e.target.value,
+    });
+    console.log(e.target.value);
   }
 
   render() {
@@ -23,17 +38,18 @@ class TodoItem extends Component {
     return (
       <div className="collection-item" key={this.props.index}>
         <div style={viewStyle}>
-          <span>{this.state.todoText}</span>
-          <div style={{ display: 'inline-block', width: '95%' }} className="right-align">
-            <button className="btn" onClick={this.handleEditing}>Edit</button>
+          <span style={{ display: 'inline-block', width: '80%' }}>{this.state.todoText}</span>
+          <div style={{ display: 'inline-block', width: '20%' }} className="right-align">
+            <button className="btn" onClick={this.handleEditingStart}>Edit</button>
             {' '}
             <button className="btn" onClick={() => this.props.deleteTodo(this.props.index)}>Delete</button>
           </div>
         </div>
         <input 
           type="text" 
-          onChange
-          value={this.props.todo.title} 
+          onKeyDown={this.handleEditingComplete}
+          onChange={this.handleEditing}
+          value={this.state.todoText} 
           style={editStyle} 
         />
       </div>
