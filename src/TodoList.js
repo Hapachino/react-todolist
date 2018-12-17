@@ -1,12 +1,16 @@
 import React from 'react';
+import TodoItem from './TodoItem';
 
 function TodoList(props) {
   const list = props.todos.length ? (
     props.todos.map((todo, index) => {
       return (
-        <div className="todo" key={index} onClick={() => props.deleteTodo(index)}>
-          {todo.title}
-        </div>
+        <TodoItem 
+          todo={todo} 
+          key={index}
+          index={index} 
+          deleteTodo={props.deleteTodo} >
+        </TodoItem>
       );
     })
   ) : (
@@ -14,7 +18,7 @@ function TodoList(props) {
   )
 
   return (
-    <div>
+    <div className="collection">
       {list}
     </div>
   );
