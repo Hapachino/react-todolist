@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TodoList from './TodoList';
 import InputBar from './InputBar';
+import TodoList from './TodoList';
 
 const todos = [
   { title: 'buy milk' },
@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   addTodo = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && this.state.todoText.length > 0) {
       this.setState({
         todos: [...this.state.todos, { title: this.state.todoText }],
         todoText: '',

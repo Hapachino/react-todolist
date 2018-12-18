@@ -9,7 +9,7 @@ function TodoList(props) {
           todo={todo} 
           key={index}
           index={index} 
-          deleteTodo={props.deleteTodo} >
+          deleteTodo={props.deleteTodo}>
         </TodoItem>
       );
     })
